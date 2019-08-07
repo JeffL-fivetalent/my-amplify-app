@@ -1,0 +1,20 @@
+type Talk @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  clientId: ID
+  name: String!
+  description: String!
+  speakerName: String!
+  speakerBio: String!
+  type: String
+}
+
+type Coin {
+  id: String!
+  name: String!
+  symbol: String!
+  price_usd: String!
+}
+
+type Query {
+  getCoins(limit: Int start: Int): [Coin] @function(name: "currencyfunction-${env}")
+}
